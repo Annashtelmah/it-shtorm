@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { MainComponent } from './views/main/main.component';
 import { UserModule } from './views/user/user.module';
@@ -26,10 +26,15 @@ const routes: Routes = [
     ],
   },
 ];
-
+const routerOptions: ExtraOptions = {
+  anchorScrolling: 'disabled', 
+  scrollPositionRestoration: 'enabled', 
+  scrollOffset: [0, 100], 
+  onSameUrlNavigation: 'reload', 
+};
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {anchorScrolling:'enabled', scrollPositionRestoration:'enabled'}),
+    RouterModule.forRoot(routes, routerOptions),
   ],
   exports: [RouterModule],
 })

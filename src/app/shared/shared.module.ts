@@ -11,6 +11,7 @@ import { DialogElementComponent } from './components/dialog-element/dialog-eleme
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogConsultationComponent } from './components/dialog-consultation/dialog-consultation.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DialogConsultationComponent } from './components/dialog-consultation/di
     CommentCardComponent,
     DialogElementComponent,
     DialogConsultationComponent,
+    LoaderComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule,FormsModule, MatDialogModule, RouterModule],
   exports: [
@@ -31,6 +33,7 @@ import { DialogConsultationComponent } from './components/dialog-consultation/di
     CommentCardComponent,
     DialogElementComponent,
     DialogConsultationComponent,
+    LoaderComponent
   ],
 })
 export class SharedModule {}

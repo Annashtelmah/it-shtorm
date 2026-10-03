@@ -165,6 +165,7 @@
             }
           }
           .detail-comments-items {
+            position: relative;
             margin-top: 60px;
             .detail-comments-item {
               margin-bottom: 40px;
@@ -209,4 +210,31 @@
       }
     }
   }
+}
+
+
+.comments-container {
+  position: relative; 
+ // min-height: 200px; 
+}
+.comments-loader {
+  position: absolute;
+  inset: 0; 
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 1); 
+  z-index: 10;
+}
+
+.spinning-loader {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

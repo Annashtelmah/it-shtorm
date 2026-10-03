@@ -5,11 +5,11 @@
     </a>
     <nav class="header-menu">
       <ul class="header-menu-items menu-items">
-        <li class="header-menu-item menu-item"><a href="#">Услуги</a></li>
-        <li class="header-menu-item menu-item"><a href="#">О нас</a></li>
+        <li class="header-menu-item menu-item"><a  [routerLink]="['/']" fragment="services">Услуги</a></li>
+        <li class="header-menu-item menu-item"><a [routerLink]="['/']" fragment="about">О нас</a></li>
         <li class="header-menu-item menu-item"><a routerLink="/blog" routerLinkActive="active">Статьи</a></li>
-        <li class="header-menu-item menu-item"><a href="#">Отзывы</a></li>
-        <li class="header-menu-item menu-item"><a href="#">Контакты</a></li>
+        <li class="header-menu-item menu-item"><a [routerLink]="['/']" fragment="reviews">Отзывы</a></li>
+        <li class="header-menu-item menu-item"><a [routerLink]="['/']" fragment="contacts">Контакты</a></li>
       </ul>
     </nav>
     <a class="header-phone" href="tel:+74993431334">+7 (499) 343-13-34</a>

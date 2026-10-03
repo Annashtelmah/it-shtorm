@@ -23,7 +23,7 @@
 
       <div
         class="detail-header-image"
-        style="background-image: url({{serverStatikPath+article.image}})"
+        style="background-image: url({{ serverStatikPath + article.image }})"
       ></div>
     </div>
 
@@ -119,38 +119,52 @@
           <div class="detail-comments-form" *ngIf="isLogged">
             <form>
               <textarea
-              [(ngModel)]="textComment"
+                [(ngModel)]="textComment"
                 name="add-comment"
                 id="add-comment"
                 class="detail-comments-form-text"
                 placeholder="Напишите Ваш комментарий к статье..."
               ></textarea>
-              <button class="button" (click)="addComment()">Опубликовать комментарий</button>
+              <button class="button" (click)="addComment()">
+                Опубликовать комментарий
+              </button>
             </form>
           </div>
+
           <div class="detail-comments-items" *ngIf="showedComments.length > 0">
-            <div class="detail-comments-item"  *ngFor="let comment of showedComments">
+            <div
+              class="detail-comments-item"
+              *ngFor="let comment of showedComments"
+            >
               <comment-card [comment]="comment"></comment-card>
             </div>
-
-            <div
-              class="detail-comments-showmore"
-              *ngIf="showedComments.length < article.commentsCount"
-              (click)="showMore()"
-            >
-              <span>Загрузить ещё комментарии</span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 14C9.41668 14 8.83335 13.775 8.39168 13.3334L2.95835 7.90003C2.71668 7.65837 2.71668 7.25837 2.95835 7.0167C3.20002 6.77503 3.60002 6.77503 3.84168 7.0167L9.27502 12.45C9.67502 12.85 10.325 12.85 10.725 12.45L16.1583 7.0167C16.4 6.77503 16.8 6.77503 17.0417 7.0167C17.2833 7.25837 17.2833 7.65837 17.0417 7.90003L11.6083 13.3334C11.1667 13.775 10.5833 14 10 14Z"
-                  fill="#709FDC"
+            <div class="comments-container">
+              <div class="comments-loader" *ngIf="isLoading">
+                <img
+                  src="../../../../assets/images/loader/Loader.png"
+                  alt="Загрузка..."
+                  class="spinning-loader"
                 />
-              </svg>
+              </div>
+              <div
+                class="detail-comments-showmore"
+                *ngIf="showedComments.length < article.commentsCount"
+                (click)="showMore()"
+              >
+                <span>Загрузить ещё комментарии</span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 14C9.41668 14 8.83335 13.775 8.39168 13.3334L2.95835 7.90003C2.71668 7.65837 2.71668 7.25837 2.95835 7.0167C3.20002 6.77503 3.60002 6.77503 3.84168 7.0167L9.27502 12.45C9.67502 12.85 10.325 12.85 10.725 12.45L16.1583 7.0167C16.4 6.77503 16.8 6.77503 17.0417 7.0167C17.2833 7.25837 17.2833 7.65837 17.0417 7.90003L11.6083 13.3334C11.1667 13.775 10.5833 14 10 14Z"
+                    fill="#709FDC"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>

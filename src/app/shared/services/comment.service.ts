@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, timer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ActionCommentType } from 'src/types/action-comment.type';
 import { AllCommentType, CommentType } from 'src/types/comment.type';
@@ -17,6 +17,15 @@ export class CommentService {
       environment.api + 'comments?offset=' + offset + '&article=' + id,
     );
   }
+
+  //  getComments(id: string, offset: number = 0, delayMs: number = 3000): Observable<AllCommentType> {
+  
+  //   const url = `${environment.api}comments?offset=${offset}&article=${id}`;
+
+  //   return timer(delayMs).pipe(
+  //     switchMap(() => this.http.get<AllCommentType>(url))
+  //   );
+  // }
 
   applyAction(id: string, action: string): Observable<DefaultResponseType> {
     return this.http.post<DefaultResponseType>(

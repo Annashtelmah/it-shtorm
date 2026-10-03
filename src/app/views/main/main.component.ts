@@ -1,15 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { delay, filter, Subscription } from 'rxjs';
 import { DialogElementComponent } from 'src/app/shared/components/dialog-element/dialog-element.component';
 import { ArticleService } from 'src/app/shared/services/article.service';
 import { ArticleType } from 'src/types/article.type';
@@ -20,7 +16,7 @@ import { ServiceType } from 'src/types/service.type copy';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   articles: ArticleType[] = [];
   bannerOptions: OwlOptions = {
     loop: true,
@@ -132,15 +128,28 @@ export class MainComponent implements OnInit {
       text: 'Обратилась в АйтиШторм за помощью копирайтера. Ни разу ещё не пожалела! Ребята действительно вкладывают душу в то, что делают, и каждый текст, который я получаю, с нетерпением хочется выложить в сеть.',
     },
   ];
+  private fragmentSubscription!: Subscription;
 
   //@ViewChild('popup') popup!:TemplateRef<ElementRef>;
   constructor(
     private articleService: ArticleService,
     private _snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
+    this.fragmentSubscription = this.route.fragment
+      .pipe(
+        filter((fragment) => !!fragment),
+        delay(200), 
+      )
+      .subscribe((fragment) => {
+        if (fragment) {
+          this.scrollToElement(fragment);
+        }
+      });
     this.articleService.getPopularArticles().subscribe({
       next: (data: ArticleType[]) => {
         this.articles = data.slice(0, 4);
@@ -155,7 +164,28 @@ export class MainComponent implements OnInit {
     });
   }
 
-  openDialog(service:string) {
+  ngOnDestroy(): void {
+    if (this.fragmentSubscription) {
+      this.fragmentSubscription.unsubscribe();
+    }
+  }
+
+  private scrollToElement(elementId: string): void {
+    const element = document.getElementById(elementId);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  }
+
+  openDialog(service: string) {
     this.dialog.open(DialogElementComponent, {
       data: {
         service: service,
