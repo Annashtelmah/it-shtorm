@@ -1,0 +1,5 @@
+<div class="blog-filters-item" *ngIf="category" (click)="updateFilterParam(category.url)" [style.color]="check?'#071739':'#bebebe'">
+  <span>{{ category.name }}</span>
+  <span *ngIf="check">+</span>
+   <span *ngIf="!check">-</span>
+</div>

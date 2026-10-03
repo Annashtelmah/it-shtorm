@@ -1,0 +1,17 @@
+@import "../../../../assets/styles/auth-form";
+@import "../../../../assets/styles/variables";
+
+.login {
+  padding-top: 106px;
+  padding-bottom: 92px;
+  .container {
+    display: flex;
+    .auth-form {
+      padding-top: 14px;
+      max-width: 429px;
+    }
+    .auth-image {
+      margin-left: 178px;
+    }
+  }
+}

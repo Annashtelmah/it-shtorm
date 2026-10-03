@@ -1,0 +1,14 @@
+<div class="service-card" *ngIf="service">
+  <div
+    class="service-card-image"
+    style="background-image: url({{serverStatikPath+service.image}})"
+  ></div>
+  <div class="service-card-title">{{ service.title }}</div>
+  <div class="service-card-text">
+    {{ service.description }}
+  </div>
+  <div class="service-card-footer">
+    <span class="service-card-footer-price">От {{service.price}}</span>
+    <button  class="button" (click)="openDialog()">Подробнее</button>
+  </div>
+</div>

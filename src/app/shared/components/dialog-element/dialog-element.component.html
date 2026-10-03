@@ -1,0 +1,136 @@
+
+  <div class="popup">
+    <div class="popup-close" (click)="closePopup()">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line
+          x1="1.93562"
+          y1="2.64999"
+          x2="13.9564"
+          y2="14.6708"
+          stroke="#BEBEBE"
+          stroke-linecap="round"
+        />
+        <line
+          x1="13.9236"
+          y1="2.62978"
+          x2="1.90277"
+          y2="14.6506"
+          stroke="#BEBEBE"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+    <div class="request-popup" *ngIf="!thanks">
+      <div class="request-popup-title">Заявка на услугу</div>
+      <div class="request-popup-form" [formGroup]="requestForm">
+        <div class="request-popup-input">
+          <select  id="service-select" class="input" formControlName="service" >
+            <option
+              [value]="service"
+              *ngFor="let service of services"
+            >
+              {{ service }}
+            </option>
+          </select>
+        </div>
+        <div class="request-popup-input">
+          <input
+            type="text"
+            class="input"
+            placeholder="Ваше имя"
+            formControlName="name"
+            [ngStyle]="{
+              'border-color':
+                requestForm.get('name')?.invalid &&
+                (requestForm.get('name')?.dirty ||
+                  requestForm.get('name')?.touched)
+                  ? 'red'
+                  : ''
+            }"
+          />
+        </div>
+        <div
+          *ngIf="
+            requestForm.get('name')?.invalid &&
+            (requestForm.get('name')?.dirty || requestForm.get('name')?.touched)
+          "
+        >
+          <div
+            class="input-error"
+            *ngIf="requestForm.get('name')?.errors?.['required']"
+          >
+            Введите имя
+          </div>
+          <div
+            class="input-error"
+            *ngIf="requestForm.get('name')?.errors?.['pattern']"
+          >
+            Некорректное имя
+          </div>
+        </div>
+
+        <div class="request-popup-input">
+          <input
+            type="text"
+            class="input"
+            placeholder="Ваш номер телефона"
+            formControlName="phone"
+            [ngStyle]="{
+              'border-color':
+                requestForm.get('phone')?.invalid &&
+                (requestForm.get('phone')?.dirty ||
+                  requestForm.get('phone')?.touched)
+                  ? 'red'
+                  : ''
+            }"
+          />
+        </div>
+        <div
+          *ngIf="
+            requestForm.get('phone')?.invalid &&
+            (requestForm.get('phone')?.dirty ||
+              requestForm.get('phone')?.touched)
+          "
+        >
+          <div
+            class="input-error"
+            *ngIf="requestForm.get('phone')?.errors?.['required']"
+          >
+            Введите телефон
+          </div>
+          <div
+            class="input-error"
+            *ngIf="requestForm.get('phone')?.errors?.['pattern']"
+          >
+            Некорректный телефон
+          </div>
+        </div>
+
+        <div class="request-popup-button">
+          <button
+            class="button"
+            [disabled]="requestForm.invalid"
+            (click)="request()"
+          >
+            Зарегистрироваться
+          </button>
+        </div>
+        <div class="request-popup-error" *ngIf="requestError">
+          Ошибка при отправке формы. Попробуйте еще раз
+        </div>
+      </div>
+    </div>
+    <div class="thanks-popup" *ngIf="thanks">
+      <div class="thanks-popup-title">Спасибо за вашу заявку!</div>
+      <div class="thanks-popup-text">Мы свяжемся с вами при первой же возможности.</div>
+      <div class="thanks-popup-button">
+        <button class="button button-small"  (click)="closePopup()">Окей</button>
+      </div>
+    </div>
+  </div>

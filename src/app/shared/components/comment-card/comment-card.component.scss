@@ -1,0 +1,80 @@
+@import "../../../../assets/styles/variables";
+
+.comment-card {
+  .comment-card-header {
+    display: flex;
+    margin-bottom: 15px;
+    .comment-card-header-image {
+      margin-right: 26px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: rgba(185, 213, 253, 1);
+      border: 2px solid $blue-color;
+    }
+    .comment-card-header-info {
+      .comment-card-header-info-name {
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 130%;
+        color: $blue-color;
+        margin-bottom: 10px;
+      }
+      .comment-card-header-info-data {
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 130%;
+        color: #bebebe;
+      }
+    }
+  }
+  .comment-card-body {
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: $base-color-text;
+    margin-bottom: 39px;
+  }
+  .comment-card-footer {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 3px;
+      font-family: "Montserrat", sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 140%;
+      color: $base-color-text;
+      &.active {
+        color: $blue-color;
+      }
+    }
+    .like {
+      margin-right: 15px;
+      cursor: pointer;
+      &.active svg path {
+        stroke: $blue-color;
+      }
+    }
+    .dislike {
+      margin-right: 15px;
+      cursor: pointer;
+      &.active svg path {
+        stroke: $blue-color;
+      }
+    }
+    .violate {
+      cursor: pointer;
+      &.active svg path {
+        stroke: $blue-color;
+      }
+    }
+  }
+}

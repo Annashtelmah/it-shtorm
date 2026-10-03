@@ -1,0 +1,55 @@
+@import "../../../../assets/styles/variables";
+.service-card {
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  height: 498px;
+  box-sizing: border-box;
+  position: relative;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+
+  .service-card-image {
+    width: 291px;
+    height: 291px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+  }
+  .service-card-title {
+    margin-top: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    color: $blue-color;
+  }
+  .service-card-text {
+    max-width: 287px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 130%;
+    color: $base-color-text;
+    width: 287px;
+  }
+  .service-card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      color: $blue-color;
+    }
+    a {
+     width: 163px;
+    }
+  }
+}
